@@ -1,0 +1,13 @@
+
+Challenge,Method,"Submission Date"
+pixellevel,"not fasterseg","2022-05-12 23:44:11"
+
+"Class level"
+Metric,Average,road,sidewalk,building,wall,fence,pole,trafficlight,trafficsign,vegetation,terrain,sky,person,rider,car,truck,bus,train,motorcycle,bicycle
+IoU,69.8305,97.8054,82.5024,90.8123,43.5513,47.7191,57.0745,62.3331,68.2719,92.2237,69.0303,94.2322,80.0749,58.1937,93.0632,46.4175,61.2191,62.6179,52.1321,67.5052
+iIoU,43.5845,,,,,,,,,,,,59.6975,34.6832,86.7468,22.0407,33.7487,29.7798,31.3095,50.67
+
+"Category level"
+Metric,Average,flat,nature,object,sky,construction,human,vehicle
+IoU,87.4278,98.1728,91.9358,63.5645,94.2322,91.1785,80.7772,92.1335
+iIoU,72.7791,,,,,,61.1474,84.4108

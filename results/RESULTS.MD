@@ -2,6 +2,16 @@
 
 All results were trained on the Cityscapes dataset.
 
+---
+
+`test/`:
+
+contains test results submitted to Cityscapes and csv files containing the returned evaluations
+
+`merged.csv` contains all the test results in a single file.
+
+---
+
 `train/`:
 
 `train-512x1024_student_batch12-20220507-131130_DISTILLED_100epochs` - training of student model distilled (for 100 epochs) from teacher model (trained for 100 epochs).
