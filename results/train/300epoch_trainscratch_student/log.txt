@@ -1,0 +1,1590 @@
+2022-05-09 21:20:49,345 args = {'seed': 12345, 'repo_name': 'FasterSeg', 'abs_dir': '/home/asg1g18/FasterSeg/train', 'this_dir': 'train', 'root_dir': '/home/asg1g18/FasterSeg', 'log_dir': '/home/asg1g18/FasterSeg/log/train', 'dataset_path': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/', 'img_root_folder': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/', 'gt_root_folder': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/', 'train_source': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/cityscapes_train_fine.txt', 'train_eval_source': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/cityscapes_train_val_fine.txt', 'eval_source': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/cityscapes_val_fine.txt', 'test_source': '/home/asg1g18/FasterSeg/tools/datasets/cityscapes/cityscapes_test.txt', 'num_classes': 19, 'background': -1, 'image_mean': array([0.485, 0.456, 0.406]), 'image_std': array([0.229, 0.224, 0.225]), 'target_size': 1024, 'down_sampling': 1, 'gt_down_sampling': 1, 'num_train_imgs': 2975, 'num_eval_imgs': 100, 'bn_eps': 1e-05, 'bn_momentum': 0.1, 'lr': 0.01, 'momentum': 0.9, 'weight_decay': 0.0005, 'nepochs': 300, 'niters_per_epoch': 1000, 'num_workers': 6, 'train_scale_array': [0.75, 1, 1.25], 'eval_stride_rate': 0.8333333333333334, 'eval_scale_array': [1], 'eval_flip': False, 'eval_base_size': 1024, 'eval_crop_size': 1024, 'eval_height': 1024, 'eval_width': 2048, 'layers': 16, 'mode': 'teacher', 'arch_idx': [1], 'branch': [2], 'width_mult_list': [0.3333333333333333, 0.5, 0.6666666666666666, 0.8333333333333334, 1.0], 'stem_head_width': [(0.6666666666666666, 0.6666666666666666)], 'load_path': '/home/asg1g18/FasterSeg/train/fasterseg', 'load_epoch': 'last', 'batch_size': 12, 'Fch': 12, 'image_height': 512, 'image_width': 1024, 'save': 'train-512x1024_teacher_batch12-20220509-212049', 'is_test': False, 'is_eval': False, 'eval_path': 'train-512x1024_student_batch12-20220507-131130'}
+2022-05-09 21:20:51,833 net: Network_Multi_Path_Infer(
+  (_criterion): CrossEntropyLoss()
+  (stem): Sequential(
+    (0): ConvNorm(
+      (conv): Sequential(
+        (0): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+    )
+    (1): BasicResidual2x(
+      (relu): ReLU(inplace=True)
+      (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): BasicResidual2x(
+      (relu): ReLU(inplace=True)
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (cells): ModuleDict(
+    (0-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (0-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (1-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (1-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (2-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (2-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (3-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_1x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (3-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (4-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (4-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (5-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (5-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (6-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (6-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (7-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (7-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(64, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (8-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (8-1): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(192, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+    (9-0): Cell(
+      (_op): MixedOp(
+        (_op): BasicResidual_downup_2x(
+          (relu): ReLU(inplace=True)
+          (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+    )
+  )
+  (heads32): Head(
+    (conv_3x3): ConvBnRelu(
+      (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (conv_1x1): Conv2d(256, 19, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (heads16): Head(
+    (conv_3x3): ConvBnRelu(
+      (conv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (conv_1x1): Conv2d(192, 19, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (heads8): Head(
+    (conv_3x3): ConvBnRelu(
+      (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (conv_1x1): Conv2d(128, 19, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (arms32): ModuleList(
+    (0): ConvNorm(
+      (conv): Sequential(
+        (0): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+    )
+    (1): ConvNorm(
+      (conv): Sequential(
+        (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+    )
+  )
+  (refines32): ModuleList(
+    (0): ConvNorm(
+      (conv): Sequential(
+        (0): Conv2d(192, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+    )
+    (1): ConvNorm(
+      (conv): Sequential(
+        (0): Conv2d(96, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+    )
+  )
+  (arms16): ConvNorm(
+    (conv): Sequential(
+      (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+  )
+  (refines16): ConvNorm(
+    (conv): Sequential(
+      (0): Conv2d(96, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+  )
+  (ffm): FeatureFusion(
+    (conv_1x1): ConvBnRelu(
+      (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (channel_attention): Sequential(
+      (0): AdaptiveAvgPool2d(output_size=1)
+      (1): ConvBnRelu(
+        (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (relu): ReLU(inplace=True)
+      )
+      (2): ConvBnRelu(
+        (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (3): Sigmoid()
+    )
+  )
+)
+2022-05-09 21:20:52,454 params = 4.385689MB, FLOPs = 27.901919GB
+2022-05-09 21:20:52,455 ops:[[tensor(3, device='cuda:0'), tensor(3, device='cuda:0'), tensor(4, device='cuda:0'), tensor(2, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0')], [tensor(3, device='cuda:0'), tensor(3, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(3, device='cuda:0'), tensor(3, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0'), tensor(4, device='cuda:0')]]
+2022-05-09 21:20:52,455 path:[[0, 0, 0, 0, 1, 1, 1, 1, 2, 2], [0, 0, 0, 0, 0, 0, 1, 1, 1]]
+2022-05-09 21:20:52,455 last:[2, 1]
+2022-05-09 21:20:52,488 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 21:20:52,488 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 21:20:52,488 lr: 0.01
+2022-05-09 21:30:40,717 student's train_mIoU 0.199
+2022-05-09 21:30:40,717 Thread 0 handle 500 data.
+2022-05-09 21:43:10,193 student's valid_mIoU 0.255
+2022-05-09 21:43:10,293 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 21:43:10,293 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 21:43:10,293 lr: 0.00992
+2022-05-09 21:53:00,092 student's train_mIoU 0.272
+2022-05-09 21:53:00,134 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 21:53:00,134 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 21:53:00,134 lr: 0.00984064
+2022-05-09 22:02:51,281 student's train_mIoU 0.313
+2022-05-09 22:02:51,344 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:02:51,344 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:02:51,344 lr: 0.00976191488
+2022-05-09 22:12:42,943 student's train_mIoU 0.339
+2022-05-09 22:12:42,984 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:12:42,984 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:12:42,984 lr: 0.00968381956096
+2022-05-09 22:22:33,885 student's train_mIoU 0.362
+2022-05-09 22:22:33,927 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:22:33,927 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:22:33,927 lr: 0.00960634900447232
+2022-05-09 22:32:24,993 student's train_mIoU 0.381
+2022-05-09 22:32:25,027 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:32:25,027 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:32:25,027 lr: 0.009529498212436541
+2022-05-09 22:42:16,829 student's train_mIoU 0.401
+2022-05-09 22:42:16,891 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:42:16,891 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:42:16,891 lr: 0.00945326222673705
+2022-05-09 22:52:08,774 student's train_mIoU 0.418
+2022-05-09 22:52:08,816 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 22:52:08,816 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 22:52:08,816 lr: 0.009377636128923153
+2022-05-09 23:02:01,304 student's train_mIoU 0.423
+2022-05-09 23:02:01,346 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 23:02:01,346 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 23:02:01,346 lr: 0.009302615039891769
+2022-05-09 23:11:54,056 student's train_mIoU 0.445
+2022-05-09 23:11:54,057 Thread 0 handle 500 data.
+2022-05-09 23:24:22,804 student's valid_mIoU 0.460
+2022-05-09 23:24:22,922 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 23:24:22,922 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 23:24:22,922 lr: 0.009228194119572635
+2022-05-09 23:34:14,743 student's train_mIoU 0.453
+2022-05-09 23:34:14,806 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 23:34:14,806 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 23:34:14,806 lr: 0.009154368566616054
+2022-05-09 23:44:06,955 student's train_mIoU 0.461
+2022-05-09 23:44:07,016 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 23:44:07,016 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 23:44:07,016 lr: 0.009081133618083126
+2022-05-09 23:54:00,036 student's train_mIoU 0.477
+2022-05-09 23:54:00,071 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-09 23:54:00,071 train-512x1024_teacher_batch12-20220509-212049
+2022-05-09 23:54:00,071 lr: 0.009008484549138461
+2022-05-10 00:03:51,666 student's train_mIoU 0.479
+2022-05-10 00:03:51,724 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:03:51,724 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:03:51,724 lr: 0.008936416672745353
+2022-05-10 00:13:44,026 student's train_mIoU 0.491
+2022-05-10 00:13:44,087 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:13:44,087 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:13:44,088 lr: 0.00886492533936339
+2022-05-10 00:23:37,299 student's train_mIoU 0.493
+2022-05-10 00:23:37,340 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:23:37,340 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:23:37,340 lr: 0.008794005936648483
+2022-05-10 00:33:30,317 student's train_mIoU 0.496
+2022-05-10 00:33:30,360 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:33:30,360 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:33:30,360 lr: 0.008723653889155296
+2022-05-10 00:43:23,382 student's train_mIoU 0.504
+2022-05-10 00:43:23,434 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:43:23,434 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:43:23,434 lr: 0.008653864658042054
+2022-05-10 00:53:16,215 student's train_mIoU 0.512
+2022-05-10 00:53:16,277 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 00:53:16,277 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 00:53:16,277 lr: 0.008584633740777718
+2022-05-10 01:03:09,173 student's train_mIoU 0.512
+2022-05-10 01:03:09,174 Thread 0 handle 500 data.
+2022-05-10 01:15:38,421 student's valid_mIoU 0.417
+2022-05-10 01:15:38,500 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 01:15:38,500 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 01:15:38,500 lr: 0.008515956670851496
+2022-05-10 01:25:30,254 student's train_mIoU 0.522
+2022-05-10 01:25:30,296 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 01:25:30,296 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 01:25:30,296 lr: 0.008447829017484684
+2022-05-10 01:35:22,701 student's train_mIoU 0.512
+2022-05-10 01:35:22,764 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 01:35:22,764 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 01:35:22,764 lr: 0.008380246385344807
+2022-05-10 01:45:15,728 student's train_mIoU 0.521
+2022-05-10 01:45:15,770 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 01:45:15,770 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 01:45:15,770 lr: 0.00831320441426205
+2022-05-10 01:55:08,636 student's train_mIoU 0.532
+2022-05-10 01:55:08,678 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 01:55:08,678 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 01:55:08,678 lr: 0.008246698778947953
+2022-05-10 02:05:01,188 student's train_mIoU 0.529
+2022-05-10 02:05:01,229 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 02:05:01,229 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 02:05:01,229 lr: 0.008180725188716369
+2022-05-10 02:14:52,777 student's train_mIoU 0.544
+2022-05-10 02:14:52,832 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 02:14:52,832 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 02:14:52,832 lr: 0.008115279387206638
+2022-05-10 02:24:44,341 student's train_mIoU 0.539
+2022-05-10 02:24:44,399 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 02:24:44,399 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 02:24:44,399 lr: 0.008050357152108984
+2022-05-10 02:34:36,814 student's train_mIoU 0.536
+2022-05-10 02:34:36,875 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 02:34:36,875 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 02:34:36,875 lr: 0.007985954294892112
+2022-05-10 02:44:28,443 student's train_mIoU 0.544
+2022-05-10 02:44:28,485 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 02:44:28,485 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 02:44:28,485 lr: 0.007922066660532976
+2022-05-10 02:54:21,520 student's train_mIoU 0.550
+2022-05-10 02:54:21,521 Thread 0 handle 500 data.
+2022-05-10 03:06:51,281 student's valid_mIoU 0.484
+2022-05-10 03:06:51,400 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:06:51,400 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:06:51,400 lr: 0.007858690127248711
+2022-05-10 03:16:43,928 student's train_mIoU 0.556
+2022-05-10 03:16:43,970 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:16:43,970 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:16:43,970 lr: 0.007795820606230721
+2022-05-10 03:26:37,198 student's train_mIoU 0.552
+2022-05-10 03:26:37,261 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:26:37,261 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:26:37,261 lr: 0.007733454041380875
+2022-05-10 03:36:30,402 student's train_mIoU 0.554
+2022-05-10 03:36:30,460 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:36:30,460 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:36:30,460 lr: 0.007671586409049828
+2022-05-10 03:46:22,412 student's train_mIoU 0.555
+2022-05-10 03:46:22,447 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:46:22,447 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:46:22,447 lr: 0.00761021371777743
+2022-05-10 03:56:16,335 student's train_mIoU 0.559
+2022-05-10 03:56:16,376 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 03:56:16,376 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 03:56:16,376 lr: 0.00754933200803521
+2022-05-10 04:06:08,770 student's train_mIoU 0.546
+2022-05-10 04:06:08,833 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 04:06:08,833 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 04:06:08,833 lr: 0.007488937351970928
+2022-05-10 04:16:01,917 student's train_mIoU 0.563
+2022-05-10 04:16:01,959 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 04:16:01,959 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 04:16:01,959 lr: 0.007429025853155161
+2022-05-10 04:25:54,185 student's train_mIoU 0.560
+2022-05-10 04:25:54,227 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 04:25:54,227 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 04:25:54,227 lr: 0.007369593646329919
+2022-05-10 04:35:47,719 student's train_mIoU 0.572
+2022-05-10 04:35:47,754 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 04:35:47,754 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 04:35:47,754 lr: 0.00731063689715928
+2022-05-10 04:45:40,597 student's train_mIoU 0.576
+2022-05-10 04:45:40,598 Thread 0 handle 500 data.
+2022-05-10 04:58:10,257 student's valid_mIoU 0.528
+2022-05-10 04:58:10,374 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 04:58:10,374 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 04:58:10,374 lr: 0.007252151801982005
+2022-05-10 05:08:02,483 student's train_mIoU 0.571
+2022-05-10 05:08:02,524 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:08:02,524 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:08:02,524 lr: 0.007194134587566149
+2022-05-10 05:17:55,164 student's train_mIoU 0.581
+2022-05-10 05:17:55,205 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:17:55,205 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:17:55,205 lr: 0.00713658151086562
+2022-05-10 05:27:47,790 student's train_mIoU 0.581
+2022-05-10 05:27:47,831 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:27:47,831 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:27:47,831 lr: 0.007079488858778695
+2022-05-10 05:37:40,538 student's train_mIoU 0.583
+2022-05-10 05:37:40,580 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:37:40,580 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:37:40,580 lr: 0.007022852947908466
+2022-05-10 05:47:34,025 student's train_mIoU 0.586
+2022-05-10 05:47:34,087 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:47:34,088 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:47:34,088 lr: 0.006966670124325198
+2022-05-10 05:57:27,804 student's train_mIoU 0.576
+2022-05-10 05:57:27,846 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 05:57:27,846 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 05:57:27,846 lr: 0.006910936763330596
+2022-05-10 06:07:19,982 student's train_mIoU 0.589
+2022-05-10 06:07:20,044 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 06:07:20,044 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 06:07:20,045 lr: 0.006855649269223951
+2022-05-10 06:17:12,748 student's train_mIoU 0.588
+2022-05-10 06:17:12,789 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 06:17:12,789 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 06:17:12,789 lr: 0.00680080407507016
+2022-05-10 06:27:05,990 student's train_mIoU 0.583
+2022-05-10 06:27:06,031 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 06:27:06,031 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 06:27:06,031 lr: 0.006746397642469599
+2022-05-10 06:36:59,177 student's train_mIoU 0.597
+2022-05-10 06:36:59,178 Thread 0 handle 500 data.
+2022-05-10 06:49:27,123 student's valid_mIoU 0.516
+2022-05-10 06:49:27,197 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 06:49:27,197 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 06:49:27,197 lr: 0.006692426461329842
+2022-05-10 06:59:20,621 student's train_mIoU 0.591
+2022-05-10 06:59:20,663 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 06:59:20,663 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 06:59:20,663 lr: 0.006638887049639203
+2022-05-10 07:09:13,727 student's train_mIoU 0.602
+2022-05-10 07:09:13,769 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:09:13,769 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:09:13,769 lr: 0.006585775953242089
+2022-05-10 07:19:06,416 student's train_mIoU 0.593
+2022-05-10 07:19:06,458 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:19:06,458 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:19:06,458 lr: 0.006533089745616152
+2022-05-10 07:28:59,184 student's train_mIoU 0.597
+2022-05-10 07:28:59,225 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:28:59,225 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:28:59,225 lr: 0.006480825027651222
+2022-05-10 07:38:52,739 student's train_mIoU 0.590
+2022-05-10 07:38:52,781 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:38:52,781 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:38:52,781 lr: 0.0064289784274300125
+2022-05-10 07:48:46,436 student's train_mIoU 0.597
+2022-05-10 07:48:46,478 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:48:46,478 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:48:46,478 lr: 0.006377546600010572
+2022-05-10 07:58:39,227 student's train_mIoU 0.605
+2022-05-10 07:58:39,269 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 07:58:39,270 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 07:58:39,270 lr: 0.006326526227210487
+2022-05-10 08:08:32,181 student's train_mIoU 0.597
+2022-05-10 08:08:32,223 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 08:08:32,223 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 08:08:32,223 lr: 0.006275914017392803
+2022-05-10 08:18:25,118 student's train_mIoU 0.608
+2022-05-10 08:18:25,160 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 08:18:25,160 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 08:18:25,160 lr: 0.00622570670525366
+2022-05-10 08:28:18,458 student's train_mIoU 0.609
+2022-05-10 08:28:18,460 Thread 0 handle 500 data.
+2022-05-10 08:40:47,406 student's valid_mIoU 0.555
+2022-05-10 08:40:47,480 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 08:40:47,480 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 08:40:47,480 lr: 0.006175901051611631
+2022-05-10 08:50:39,898 student's train_mIoU 0.600
+2022-05-10 08:50:39,939 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 08:50:39,939 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 08:50:39,940 lr: 0.006126493843198738
+2022-05-10 09:00:32,486 student's train_mIoU 0.609
+2022-05-10 09:00:32,527 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:00:32,527 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:00:32,527 lr: 0.006077481892453148
+2022-05-10 09:10:25,285 student's train_mIoU 0.614
+2022-05-10 09:10:25,348 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:10:25,348 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:10:25,348 lr: 0.006028862037313522
+2022-05-10 09:20:17,892 student's train_mIoU 0.612
+2022-05-10 09:20:17,933 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:20:17,933 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:20:17,933 lr: 0.005980631141015014
+2022-05-10 09:30:09,990 student's train_mIoU 0.615
+2022-05-10 09:30:10,042 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:30:10,042 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:30:10,042 lr: 0.005932786091886894
+2022-05-10 09:40:03,848 student's train_mIoU 0.616
+2022-05-10 09:40:03,891 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:40:03,891 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:40:03,891 lr: 0.005885323803151798
+2022-05-10 09:49:57,089 student's train_mIoU 0.616
+2022-05-10 09:49:57,130 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:49:57,130 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:49:57,130 lr: 0.005838241212726584
+2022-05-10 09:59:50,496 student's train_mIoU 0.617
+2022-05-10 09:59:50,559 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 09:59:50,559 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 09:59:50,559 lr: 0.005791535283024771
+2022-05-10 10:09:44,211 student's train_mIoU 0.621
+2022-05-10 10:09:44,253 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 10:09:44,253 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 10:09:44,253 lr: 0.005745203000760572
+2022-05-10 10:19:37,713 student's train_mIoU 0.622
+2022-05-10 10:19:37,715 Thread 0 handle 500 data.
+2022-05-10 10:32:07,298 student's valid_mIoU 0.555
+2022-05-10 10:32:07,372 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 10:32:07,372 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 10:32:07,372 lr: 0.005699241376754488
+2022-05-10 10:42:00,192 student's train_mIoU 0.623
+2022-05-10 10:42:00,251 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 10:42:00,251 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 10:42:00,251 lr: 0.005653647445740452
+2022-05-10 10:51:53,717 student's train_mIoU 0.623
+2022-05-10 10:51:53,778 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 10:51:53,778 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 10:51:53,778 lr: 0.005608418266174528
+2022-05-10 11:01:46,876 student's train_mIoU 0.627
+2022-05-10 11:01:46,935 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:01:46,935 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:01:46,935 lr: 0.005563550920045132
+2022-05-10 11:11:39,562 student's train_mIoU 0.621
+2022-05-10 11:11:39,603 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:11:39,604 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:11:39,604 lr: 0.0055190425126847706
+2022-05-10 11:21:32,869 student's train_mIoU 0.625
+2022-05-10 11:21:32,904 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:21:32,904 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:21:32,904 lr: 0.005474890172583293
+2022-05-10 11:31:26,098 student's train_mIoU 0.625
+2022-05-10 11:31:26,139 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:31:26,139 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:31:26,139 lr: 0.005431091051202626
+2022-05-10 11:41:19,413 student's train_mIoU 0.636
+2022-05-10 11:41:19,471 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:41:19,471 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:41:19,471 lr: 0.005387642322793005
+2022-05-10 11:51:12,757 student's train_mIoU 0.632
+2022-05-10 11:51:12,798 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 11:51:12,798 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 11:51:12,798 lr: 0.005344541184210661
+2022-05-10 12:01:06,597 student's train_mIoU 0.634
+2022-05-10 12:01:06,639 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 12:01:06,639 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 12:01:06,639 lr: 0.005301784854736976
+2022-05-10 12:11:00,427 student's train_mIoU 0.629
+2022-05-10 12:11:00,428 Thread 0 handle 500 data.
+2022-05-10 12:23:29,661 student's valid_mIoU 0.552
+2022-05-10 12:23:29,739 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 12:23:29,739 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 12:23:29,740 lr: 0.00525937057589908
+2022-05-10 12:33:23,994 student's train_mIoU 0.630
+2022-05-10 12:33:24,055 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 12:33:24,055 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 12:33:24,055 lr: 0.005217295611291888
+2022-05-10 12:43:18,566 student's train_mIoU 0.632
+2022-05-10 12:43:18,630 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 12:43:18,630 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 12:43:18,630 lr: 0.005175557246401553
+2022-05-10 12:53:12,711 student's train_mIoU 0.633
+2022-05-10 12:53:12,756 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 12:53:12,756 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 12:53:12,756 lr: 0.0051341527884303404
+2022-05-10 13:03:07,635 student's train_mIoU 0.650
+2022-05-10 13:03:07,676 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:03:07,676 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:03:07,676 lr: 0.005093079566122898
+2022-05-10 13:13:01,994 student's train_mIoU 0.633
+2022-05-10 13:13:02,036 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:13:02,036 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:13:02,036 lr: 0.005052334929593915
+2022-05-10 13:22:55,240 student's train_mIoU 0.631
+2022-05-10 13:22:55,302 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:22:55,302 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:22:55,302 lr: 0.005011916250157164
+2022-05-10 13:32:49,122 student's train_mIoU 0.648
+2022-05-10 13:32:49,163 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:32:49,163 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:32:49,163 lr: 0.004971820920155906
+2022-05-10 13:42:43,297 student's train_mIoU 0.626
+2022-05-10 13:42:43,347 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:42:43,348 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:42:43,348 lr: 0.004932046352794659
+2022-05-10 13:52:37,647 student's train_mIoU 0.646
+2022-05-10 13:52:37,708 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 13:52:37,708 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 13:52:37,708 lr: 0.004892589981972301
+2022-05-10 14:02:32,174 student's train_mIoU 0.635
+2022-05-10 14:02:32,175 Thread 0 handle 500 data.
+2022-05-10 14:15:03,913 student's valid_mIoU 0.563
+2022-05-10 14:15:03,988 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 14:15:03,988 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 14:15:03,988 lr: 0.004853449262116523
+2022-05-10 14:24:58,506 student's train_mIoU 0.640
+2022-05-10 14:24:58,547 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 14:24:58,547 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 14:24:58,547 lr: 0.004814621668019591
+2022-05-10 14:34:54,325 student's train_mIoU 0.652
+2022-05-10 14:34:54,358 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 14:34:54,358 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 14:34:54,358 lr: 0.004776104694675434
+2022-05-10 14:44:49,414 student's train_mIoU 0.648
+2022-05-10 14:44:49,455 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 14:44:49,455 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 14:44:49,455 lr: 0.004737895857118031
+2022-05-10 14:54:43,881 student's train_mIoU 0.654
+2022-05-10 14:54:43,940 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 14:54:43,940 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 14:54:43,940 lr: 0.004699992690261086
+2022-05-10 15:04:38,819 student's train_mIoU 0.663
+2022-05-10 15:04:38,861 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 15:04:38,861 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 15:04:38,861 lr: 0.0046623927487389975
+2022-05-10 15:14:33,328 student's train_mIoU 0.652
+2022-05-10 15:14:33,370 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 15:14:33,370 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 15:14:33,370 lr: 0.004625093606749085
+2022-05-10 15:24:26,637 student's train_mIoU 0.639
+2022-05-10 15:24:26,679 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 15:24:26,679 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 15:24:26,679 lr: 0.004588092857895093
+2022-05-10 15:34:21,204 student's train_mIoU 0.652
+2022-05-10 15:34:21,246 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 15:34:21,246 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 15:34:21,246 lr: 0.004551388115031932
+2022-05-10 15:44:16,210 student's train_mIoU 0.648
+2022-05-10 15:44:16,251 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 15:44:16,252 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 15:44:16,252 lr: 0.004514977010111676
+2022-05-10 15:54:10,924 student's train_mIoU 0.665
+2022-05-10 15:54:10,926 Thread 0 handle 500 data.
+2022-05-10 16:06:41,027 student's valid_mIoU 0.610
+2022-05-10 16:06:41,101 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:06:41,101 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:06:41,101 lr: 0.004478857194030783
+2022-05-10 16:16:34,355 student's train_mIoU 0.650
+2022-05-10 16:16:34,397 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:16:34,397 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:16:34,397 lr: 0.004443026336478537
+2022-05-10 16:26:28,812 student's train_mIoU 0.667
+2022-05-10 16:26:28,846 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:26:28,847 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:26:28,847 lr: 0.004407482125786709
+2022-05-10 16:36:22,921 student's train_mIoU 0.651
+2022-05-10 16:36:22,962 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:36:22,962 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:36:22,962 lr: 0.004372222268780416
+2022-05-10 16:46:17,811 student's train_mIoU 0.653
+2022-05-10 16:46:17,872 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:46:17,872 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:46:17,872 lr: 0.004337244490630172
+2022-05-10 16:56:11,492 student's train_mIoU 0.659
+2022-05-10 16:56:11,534 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 16:56:11,534 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 16:56:11,534 lr: 0.004302546534705131
+2022-05-10 17:06:06,848 student's train_mIoU 0.660
+2022-05-10 17:06:06,910 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 17:06:06,910 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 17:06:06,910 lr: 0.0042681261624274896
+2022-05-10 17:16:02,171 student's train_mIoU 0.639
+2022-05-10 17:16:02,213 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 17:16:02,213 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 17:16:02,213 lr: 0.00423398115312807
+2022-05-10 17:25:56,157 student's train_mIoU 0.657
+2022-05-10 17:25:56,190 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 17:25:56,190 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 17:25:56,190 lr: 0.004200109303903045
+2022-05-10 17:35:51,296 student's train_mIoU 0.666
+2022-05-10 17:35:51,357 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 17:35:51,358 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 17:35:51,358 lr: 0.00416650842947182
+2022-05-10 17:45:46,229 student's train_mIoU 0.660
+2022-05-10 17:45:46,231 Thread 0 handle 500 data.
+2022-05-10 17:58:16,204 student's valid_mIoU 0.619
+2022-05-10 17:58:16,309 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 17:58:16,309 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 17:58:16,309 lr: 0.004133176362036046
+2022-05-10 18:08:10,780 student's train_mIoU 0.663
+2022-05-10 18:08:10,821 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:08:10,821 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:08:10,821 lr: 0.004100110951139758
+2022-05-10 18:18:06,069 student's train_mIoU 0.669
+2022-05-10 18:18:06,111 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:18:06,111 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:18:06,111 lr: 0.004067310063530639
+2022-05-10 18:28:01,099 student's train_mIoU 0.674
+2022-05-10 18:28:01,140 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:28:01,140 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:28:01,140 lr: 0.004034771583022394
+2022-05-10 18:37:56,083 student's train_mIoU 0.661
+2022-05-10 18:37:56,129 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:37:56,129 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:37:56,129 lr: 0.004002493410358215
+2022-05-10 18:47:50,713 student's train_mIoU 0.666
+2022-05-10 18:47:50,754 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:47:50,755 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:47:50,755 lr: 0.003970473463075349
+2022-05-10 18:57:45,663 student's train_mIoU 0.672
+2022-05-10 18:57:45,705 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 18:57:45,705 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 18:57:45,705 lr: 0.003938709675370747
+2022-05-10 19:07:39,633 student's train_mIoU 0.675
+2022-05-10 19:07:39,674 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 19:07:39,675 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 19:07:39,675 lr: 0.0039071999979677806
+2022-05-10 19:17:34,128 student's train_mIoU 0.664
+2022-05-10 19:17:34,183 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 19:17:34,183 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 19:17:34,183 lr: 0.0038759423979840384
+2022-05-10 19:27:29,014 student's train_mIoU 0.675
+2022-05-10 19:27:29,055 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 19:27:29,056 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 19:27:29,056 lr: 0.003844934858800166
+2022-05-10 19:37:23,683 student's train_mIoU 0.671
+2022-05-10 19:37:23,684 Thread 0 handle 500 data.
+2022-05-10 19:49:52,409 student's valid_mIoU 0.631
+2022-05-10 19:49:52,548 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 19:49:52,548 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 19:49:52,548 lr: 0.0038141753799297647
+2022-05-10 19:59:46,006 student's train_mIoU 0.675
+2022-05-10 19:59:46,069 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 19:59:46,069 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 19:59:46,069 lr: 0.0037836619768903267
+2022-05-10 20:09:40,257 student's train_mIoU 0.679
+2022-05-10 20:09:40,295 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:09:40,295 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:09:40,295 lr: 0.003753392681075204
+2022-05-10 20:19:33,970 student's train_mIoU 0.681
+2022-05-10 20:19:34,004 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:19:34,004 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:19:34,004 lr: 0.0037233655396266023
+2022-05-10 20:29:29,358 student's train_mIoU 0.686
+2022-05-10 20:29:29,400 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:29:29,400 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:29:29,400 lr: 0.0036935786153095896
+2022-05-10 20:39:23,757 student's train_mIoU 0.683
+2022-05-10 20:39:23,799 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:39:23,799 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:39:23,799 lr: 0.0036640299863871127
+2022-05-10 20:49:17,393 student's train_mIoU 0.678
+2022-05-10 20:49:17,454 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:49:17,454 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:49:17,454 lr: 0.0036347177464960156
+2022-05-10 20:59:11,797 student's train_mIoU 0.681
+2022-05-10 20:59:11,839 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 20:59:11,839 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 20:59:11,839 lr: 0.0036056400045240476
+2022-05-10 21:09:05,904 student's train_mIoU 0.678
+2022-05-10 21:09:05,938 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 21:09:05,938 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 21:09:05,938 lr: 0.0035767948844878552
+2022-05-10 21:19:00,246 student's train_mIoU 0.683
+2022-05-10 21:19:00,308 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 21:19:00,308 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 21:19:00,308 lr: 0.0035481805254119524
+2022-05-10 21:28:54,696 student's train_mIoU 0.686
+2022-05-10 21:28:54,697 Thread 0 handle 500 data.
+2022-05-10 21:41:23,767 student's valid_mIoU 0.629
+2022-05-10 21:41:23,841 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 21:41:23,841 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 21:41:23,841 lr: 0.0035197950812086566
+2022-05-10 21:51:17,603 student's train_mIoU 0.673
+2022-05-10 21:51:17,665 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 21:51:17,665 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 21:51:17,665 lr: 0.0034916367205589873
+2022-05-10 22:01:12,734 student's train_mIoU 0.674
+2022-05-10 22:01:12,775 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:01:12,775 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:01:12,775 lr: 0.0034637036267945154
+2022-05-10 22:11:06,789 student's train_mIoU 0.679
+2022-05-10 22:11:06,848 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:11:06,848 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:11:06,848 lr: 0.0034359939977801593
+2022-05-10 22:21:01,351 student's train_mIoU 0.685
+2022-05-10 22:21:01,393 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:21:01,393 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:21:01,393 lr: 0.003408506045797918
+2022-05-10 22:30:54,910 student's train_mIoU 0.688
+2022-05-10 22:30:54,951 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:30:54,951 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:30:54,952 lr: 0.0033812379974315345
+2022-05-10 22:40:48,984 student's train_mIoU 0.695
+2022-05-10 22:40:49,025 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:40:49,026 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:40:49,026 lr: 0.003354188093452082
+2022-05-10 22:50:43,110 student's train_mIoU 0.691
+2022-05-10 22:50:43,171 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 22:50:43,171 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 22:50:43,171 lr: 0.0033273545887044656
+2022-05-10 23:00:37,553 student's train_mIoU 0.696
+2022-05-10 23:00:37,594 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 23:00:37,594 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 23:00:37,594 lr: 0.00330073575199483
+2022-05-10 23:10:31,821 student's train_mIoU 0.677
+2022-05-10 23:10:31,855 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 23:10:31,855 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 23:10:31,855 lr: 0.0032743298659788714
+2022-05-10 23:20:26,339 student's train_mIoU 0.687
+2022-05-10 23:20:26,341 Thread 0 handle 500 data.
+2022-05-10 23:32:56,036 student's valid_mIoU 0.620
+2022-05-10 23:32:56,154 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 23:32:56,154 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 23:32:56,155 lr: 0.0032481352270510404
+2022-05-10 23:42:49,432 student's train_mIoU 0.685
+2022-05-10 23:42:49,486 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 23:42:49,486 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 23:42:49,486 lr: 0.003222150145234632
+2022-05-10 23:52:42,949 student's train_mIoU 0.692
+2022-05-10 23:52:43,010 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-10 23:52:43,010 train-512x1024_teacher_batch12-20220509-212049
+2022-05-10 23:52:43,010 lr: 0.003196372944072755
+2022-05-11 00:02:36,945 student's train_mIoU 0.683
+2022-05-11 00:02:36,986 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:02:36,987 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:02:36,987 lr: 0.003170801960520173
+2022-05-11 00:12:31,074 student's train_mIoU 0.691
+2022-05-11 00:12:31,115 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:12:31,115 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:12:31,115 lr: 0.0031454355448360116
+2022-05-11 00:22:25,829 student's train_mIoU 0.699
+2022-05-11 00:22:25,870 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:22:25,870 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:22:25,870 lr: 0.0031202720604773236
+2022-05-11 00:32:20,035 student's train_mIoU 0.694
+2022-05-11 00:32:20,076 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:32:20,076 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:32:20,076 lr: 0.0030953098839935048
+2022-05-11 00:42:14,108 student's train_mIoU 0.694
+2022-05-11 00:42:14,150 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:42:14,150 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:42:14,150 lr: 0.0030705474049215566
+2022-05-11 00:52:07,254 student's train_mIoU 0.690
+2022-05-11 00:52:07,316 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 00:52:07,316 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 00:52:07,316 lr: 0.003045983025682184
+2022-05-11 01:02:01,032 student's train_mIoU 0.687
+2022-05-11 01:02:01,094 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 01:02:01,094 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 01:02:01,094 lr: 0.0030216151614767266
+2022-05-11 01:11:55,188 student's train_mIoU 0.696
+2022-05-11 01:11:55,189 Thread 0 handle 500 data.
+2022-05-11 01:24:24,999 student's valid_mIoU 0.648
+2022-05-11 01:24:25,078 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 01:24:25,078 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 01:24:25,078 lr: 0.0029974422401849127
+2022-05-11 01:34:18,847 student's train_mIoU 0.698
+2022-05-11 01:34:18,889 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 01:34:18,889 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 01:34:18,889 lr: 0.0029734627022634332
+2022-05-11 01:44:12,482 student's train_mIoU 0.679
+2022-05-11 01:44:12,523 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 01:44:12,523 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 01:44:12,523 lr: 0.002949675000645326
+2022-05-11 01:54:06,591 student's train_mIoU 0.703
+2022-05-11 01:54:06,633 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 01:54:06,633 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 01:54:06,633 lr: 0.0029260776006401635
+2022-05-11 02:04:00,337 student's train_mIoU 0.701
+2022-05-11 02:04:00,378 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:04:00,378 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:04:00,378 lr: 0.0029026689798350423
+2022-05-11 02:13:54,580 student's train_mIoU 0.696
+2022-05-11 02:13:54,621 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:13:54,621 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:13:54,621 lr: 0.0028794476279963618
+2022-05-11 02:23:46,628 student's train_mIoU 0.698
+2022-05-11 02:23:46,669 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:23:46,670 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:23:46,670 lr: 0.002856412046972391
+2022-05-11 02:33:39,447 student's train_mIoU 0.698
+2022-05-11 02:33:39,488 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:33:39,488 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:33:39,488 lr: 0.0028335607505966115
+2022-05-11 02:43:32,974 student's train_mIoU 0.700
+2022-05-11 02:43:33,015 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:43:33,016 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:43:33,016 lr: 0.0028108922645918386
+2022-05-11 02:53:27,465 student's train_mIoU 0.702
+2022-05-11 02:53:27,527 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 02:53:27,528 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 02:53:27,528 lr: 0.0027884051264751037
+2022-05-11 03:03:22,159 student's train_mIoU 0.705
+2022-05-11 03:03:22,161 Thread 0 handle 500 data.
+2022-05-11 03:15:51,584 student's valid_mIoU 0.655
+2022-05-11 03:15:51,702 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 03:15:51,702 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 03:15:51,702 lr: 0.002766097885463303
+2022-05-11 03:25:44,456 student's train_mIoU 0.710
+2022-05-11 03:25:44,498 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 03:25:44,498 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 03:25:44,498 lr: 0.0027439691023795963
+2022-05-11 03:35:36,251 student's train_mIoU 0.698
+2022-05-11 03:35:36,292 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 03:35:36,292 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 03:35:36,292 lr: 0.0027220173495605595
+2022-05-11 03:45:30,117 student's train_mIoU 0.701
+2022-05-11 03:45:30,152 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 03:45:30,152 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 03:45:30,152 lr: 0.002700241210764075
+2022-05-11 03:55:23,080 student's train_mIoU 0.714
+2022-05-11 03:55:23,121 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 03:55:23,121 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 03:55:23,121 lr: 0.002678639281077962
+2022-05-11 04:05:15,653 student's train_mIoU 0.690
+2022-05-11 04:05:15,711 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 04:05:15,711 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 04:05:15,711 lr: 0.0026572101668293382
+2022-05-11 04:15:07,745 student's train_mIoU 0.715
+2022-05-11 04:15:07,779 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 04:15:07,779 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 04:15:07,779 lr: 0.0026359524854947035
+2022-05-11 04:24:59,621 student's train_mIoU 0.716
+2022-05-11 04:24:59,662 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 04:24:59,662 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 04:24:59,662 lr: 0.002614864865610746
+2022-05-11 04:34:50,657 student's train_mIoU 0.704
+2022-05-11 04:34:50,719 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 04:34:50,719 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 04:34:50,719 lr: 0.00259394594668586
+2022-05-11 04:44:43,306 student's train_mIoU 0.702
+2022-05-11 04:44:43,368 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 04:44:43,368 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 04:44:43,368 lr: 0.0025731943791123734
+2022-05-11 04:54:34,905 student's train_mIoU 0.705
+2022-05-11 04:54:34,906 Thread 0 handle 500 data.
+2022-05-11 05:07:01,847 student's valid_mIoU 0.645
+2022-05-11 05:07:01,926 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:07:01,926 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:07:01,926 lr: 0.0025526088240794744
+2022-05-11 05:16:55,661 student's train_mIoU 0.703
+2022-05-11 05:16:55,702 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:16:55,702 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:16:55,703 lr: 0.0025321879534868385
+2022-05-11 05:26:47,193 student's train_mIoU 0.704
+2022-05-11 05:26:47,235 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:26:47,235 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:26:47,235 lr: 0.002511930449858944
+2022-05-11 05:36:39,346 student's train_mIoU 0.700
+2022-05-11 05:36:39,387 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:36:39,387 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:36:39,387 lr: 0.0024918350062600723
+2022-05-11 05:46:31,408 student's train_mIoU 0.713
+2022-05-11 05:46:31,442 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:46:31,442 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:46:31,443 lr: 0.0024719003262099917
+2022-05-11 05:56:23,456 student's train_mIoU 0.713
+2022-05-11 05:56:23,517 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 05:56:23,517 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 05:56:23,517 lr: 0.0024521251236003117
+2022-05-11 06:06:16,323 student's train_mIoU 0.712
+2022-05-11 06:06:16,357 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 06:06:16,357 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 06:06:16,357 lr: 0.0024325081226115094
+2022-05-11 06:16:07,754 student's train_mIoU 0.709
+2022-05-11 06:16:07,817 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 06:16:07,817 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 06:16:07,817 lr: 0.0024130480576306174
+2022-05-11 06:25:58,648 student's train_mIoU 0.721
+2022-05-11 06:25:58,708 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 06:25:58,708 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 06:25:58,708 lr: 0.0023937436731695724
+2022-05-11 06:35:50,191 student's train_mIoU 0.714
+2022-05-11 06:35:50,249 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 06:35:50,250 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 06:35:50,250 lr: 0.0023745937237842157
+2022-05-11 06:45:41,253 student's train_mIoU 0.716
+2022-05-11 06:45:41,254 Thread 0 handle 500 data.
+2022-05-11 06:58:10,742 student's valid_mIoU 0.642
+2022-05-11 06:58:10,817 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 06:58:10,817 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 06:58:10,817 lr: 0.002355596973993942
+2022-05-11 07:08:03,651 student's train_mIoU 0.721
+2022-05-11 07:08:03,713 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:08:03,713 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:08:03,713 lr: 0.0023367521982019905
+2022-05-11 07:17:56,817 student's train_mIoU 0.726
+2022-05-11 07:17:56,859 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:17:56,859 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:17:56,859 lr: 0.0023180581806163747
+2022-05-11 07:27:51,133 student's train_mIoU 0.722
+2022-05-11 07:27:51,174 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:27:51,175 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:27:51,175 lr: 0.0022995137151714438
+2022-05-11 07:37:45,212 student's train_mIoU 0.712
+2022-05-11 07:37:45,269 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:37:45,269 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:37:45,269 lr: 0.002281117605450072
+2022-05-11 07:47:37,847 student's train_mIoU 0.711
+2022-05-11 07:47:37,889 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:47:37,889 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:47:37,889 lr: 0.0022628686646064713
+2022-05-11 07:57:31,234 student's train_mIoU 0.716
+2022-05-11 07:57:31,276 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 07:57:31,276 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 07:57:31,276 lr: 0.0022447657152896193
+2022-05-11 08:07:25,386 student's train_mIoU 0.717
+2022-05-11 08:07:25,449 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 08:07:25,449 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 08:07:25,449 lr: 0.0022268075895673024
+2022-05-11 08:17:19,772 student's train_mIoU 0.716
+2022-05-11 08:17:19,831 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 08:17:19,831 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 08:17:19,831 lr: 0.002208993128850764
+2022-05-11 08:27:13,783 student's train_mIoU 0.719
+2022-05-11 08:27:13,846 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 08:27:13,846 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 08:27:13,846 lr: 0.002191321183819958
+2022-05-11 08:37:08,613 student's train_mIoU 0.727
+2022-05-11 08:37:08,615 Thread 0 handle 500 data.
+2022-05-11 08:49:37,948 student's valid_mIoU 0.670
+2022-05-11 08:49:38,024 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 08:49:38,024 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 08:49:38,024 lr: 0.0021737906143493983
+2022-05-11 08:59:30,846 student's train_mIoU 0.728
+2022-05-11 08:59:30,909 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 08:59:30,909 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 08:59:30,909 lr: 0.002156400289434603
+2022-05-11 09:09:23,850 student's train_mIoU 0.713
+2022-05-11 09:09:23,891 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:09:23,891 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:09:23,891 lr: 0.0021391490871191265
+2022-05-11 09:19:17,467 student's train_mIoU 0.728
+2022-05-11 09:19:17,526 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:19:17,526 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:19:17,527 lr: 0.0021220358944221735
+2022-05-11 09:29:11,723 student's train_mIoU 0.724
+2022-05-11 09:29:11,784 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:29:11,784 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:29:11,784 lr: 0.002105059607266796
+2022-05-11 09:39:05,543 student's train_mIoU 0.732
+2022-05-11 09:39:05,577 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:39:05,577 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:39:05,578 lr: 0.002088219130408662
+2022-05-11 09:48:58,935 student's train_mIoU 0.727
+2022-05-11 09:48:58,995 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:48:58,996 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:48:58,996 lr: 0.0020715133773653925
+2022-05-11 09:58:52,825 student's train_mIoU 0.723
+2022-05-11 09:58:52,885 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 09:58:52,885 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 09:58:52,885 lr: 0.0020549412703464694
+2022-05-11 10:08:46,565 student's train_mIoU 0.721
+2022-05-11 10:08:46,624 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 10:08:46,625 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 10:08:46,625 lr: 0.0020385017401836976
+2022-05-11 10:18:40,463 student's train_mIoU 0.728
+2022-05-11 10:18:40,524 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 10:18:40,524 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 10:18:40,524 lr: 0.002022193726262228
+2022-05-11 10:28:33,969 student's train_mIoU 0.738
+2022-05-11 10:28:33,970 Thread 0 handle 500 data.
+2022-05-11 10:41:02,136 student's valid_mIoU 0.665
+2022-05-11 10:41:02,255 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 10:41:02,255 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 10:41:02,255 lr: 0.0020060161764521305
+2022-05-11 10:50:56,234 student's train_mIoU 0.728
+2022-05-11 10:50:56,292 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 10:50:56,292 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 10:50:56,292 lr: 0.0019899680470405134
+2022-05-11 11:00:50,139 student's train_mIoU 0.723
+2022-05-11 11:00:50,180 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:00:50,181 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:00:50,181 lr: 0.0019740483026641892
+2022-05-11 11:10:44,580 student's train_mIoU 0.730
+2022-05-11 11:10:44,621 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:10:44,621 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:10:44,621 lr: 0.0019582559162428757
+2022-05-11 11:20:37,736 student's train_mIoU 0.736
+2022-05-11 11:20:37,798 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:20:37,798 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:20:37,798 lr: 0.0019425898689129327
+2022-05-11 11:30:32,288 student's train_mIoU 0.734
+2022-05-11 11:30:32,319 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:30:32,319 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:30:32,319 lr: 0.0019270491499616292
+2022-05-11 11:40:26,076 student's train_mIoU 0.725
+2022-05-11 11:40:26,117 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:40:26,117 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:40:26,117 lr: 0.0019116327567619362
+2022-05-11 11:50:19,509 student's train_mIoU 0.741
+2022-05-11 11:50:19,550 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 11:50:19,550 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 11:50:19,550 lr: 0.0018963396947078407
+2022-05-11 12:00:12,952 student's train_mIoU 0.726
+2022-05-11 12:00:12,993 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 12:00:12,993 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 12:00:12,994 lr: 0.001881168977150178
+2022-05-11 12:10:07,359 student's train_mIoU 0.736
+2022-05-11 12:10:07,401 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 12:10:07,401 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 12:10:07,401 lr: 0.0018661196253329764
+2022-05-11 12:20:01,314 student's train_mIoU 0.737
+2022-05-11 12:20:01,316 Thread 0 handle 500 data.
+2022-05-11 12:32:20,692 student's valid_mIoU 0.655
+2022-05-11 12:32:20,810 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 12:32:20,810 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 12:32:20,810 lr: 0.0018511906683303127
+2022-05-11 12:42:14,675 student's train_mIoU 0.729
+2022-05-11 12:42:14,716 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 12:42:14,716 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 12:42:14,716 lr: 0.0018363811429836703
+2022-05-11 12:52:07,674 student's train_mIoU 0.729
+2022-05-11 12:52:07,735 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 12:52:07,736 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 12:52:07,736 lr: 0.0018216900938398009
+2022-05-11 13:02:01,061 student's train_mIoU 0.740
+2022-05-11 13:02:01,121 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:02:01,122 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:02:01,122 lr: 0.0018071165730890824
+2022-05-11 13:11:55,485 student's train_mIoU 0.736
+2022-05-11 13:11:55,547 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:11:55,548 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:11:55,548 lr: 0.0017926596405043696
+2022-05-11 13:21:50,012 student's train_mIoU 0.736
+2022-05-11 13:21:50,071 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:21:50,071 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:21:50,071 lr: 0.0017783183633803346
+2022-05-11 13:31:44,490 student's train_mIoU 0.737
+2022-05-11 13:31:44,531 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:31:44,531 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:31:44,531 lr: 0.001764091816473292
+2022-05-11 13:41:39,124 student's train_mIoU 0.737
+2022-05-11 13:41:39,187 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:41:39,187 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:41:39,187 lr: 0.0017499790819415057
+2022-05-11 13:51:33,481 student's train_mIoU 0.739
+2022-05-11 13:51:33,524 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 13:51:33,524 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 13:51:33,524 lr: 0.0017359792492859737
+2022-05-11 14:01:27,373 student's train_mIoU 0.736
+2022-05-11 14:01:27,436 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 14:01:27,436 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 14:01:27,436 lr: 0.0017220914152916858
+2022-05-11 14:11:21,646 student's train_mIoU 0.734
+2022-05-11 14:11:21,648 Thread 0 handle 500 data.
+2022-05-11 14:23:53,342 student's valid_mIoU 0.684
+2022-05-11 14:23:53,459 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 14:23:53,459 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 14:23:53,459 lr: 0.0017083146839693523
+2022-05-11 14:33:47,353 student's train_mIoU 0.743
+2022-05-11 14:33:47,394 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 14:33:47,394 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 14:33:47,394 lr: 0.0016946481664975976
+2022-05-11 14:43:42,576 student's train_mIoU 0.736
+2022-05-11 14:43:42,618 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 14:43:42,618 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 14:43:42,618 lr: 0.0016810909811656167
+2022-05-11 14:53:36,270 student's train_mIoU 0.741
+2022-05-11 14:53:36,312 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 14:53:36,312 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 14:53:36,312 lr: 0.0016676422533162918
+2022-05-11 15:03:30,477 student's train_mIoU 0.734
+2022-05-11 15:03:30,518 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:03:30,518 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:03:30,518 lr: 0.0016543011152897614
+2022-05-11 15:13:24,060 student's train_mIoU 0.742
+2022-05-11 15:13:24,122 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:13:24,122 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:13:24,122 lr: 0.0016410667063674433
+2022-05-11 15:23:18,850 student's train_mIoU 0.743
+2022-05-11 15:23:18,885 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:23:18,885 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:23:18,885 lr: 0.0016279381727165039
+2022-05-11 15:33:14,219 student's train_mIoU 0.725
+2022-05-11 15:33:14,273 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:33:14,273 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:33:14,273 lr: 0.0016149146673347717
+2022-05-11 15:43:09,179 student's train_mIoU 0.745
+2022-05-11 15:43:09,213 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:43:09,213 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:43:09,213 lr: 0.0016019953499960935
+2022-05-11 15:53:03,727 student's train_mIoU 0.742
+2022-05-11 15:53:03,769 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 15:53:03,769 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 15:53:03,769 lr: 0.0015891793871961248
+2022-05-11 16:02:58,858 student's train_mIoU 0.745
+2022-05-11 16:02:58,859 Thread 0 handle 500 data.
+2022-05-11 16:15:28,869 student's valid_mIoU 0.692
+2022-05-11 16:15:28,989 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 16:15:28,989 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 16:15:28,989 lr: 0.0015764659520985558
+2022-05-11 16:25:23,711 student's train_mIoU 0.748
+2022-05-11 16:25:23,774 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 16:25:23,774 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 16:25:23,774 lr: 0.0015638542244817673
+2022-05-11 16:35:18,142 student's train_mIoU 0.748
+2022-05-11 16:35:18,183 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 16:35:18,183 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 16:35:18,183 lr: 0.0015513433906859133
+2022-05-11 16:45:12,281 student's train_mIoU 0.756
+2022-05-11 16:45:12,323 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 16:45:12,323 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 16:45:12,323 lr: 0.0015389326435604259
+2022-05-11 16:55:07,393 student's train_mIoU 0.752
+2022-05-11 16:55:07,434 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 16:55:07,434 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 16:55:07,434 lr: 0.0015266211824119425
+2022-05-11 17:05:01,651 student's train_mIoU 0.740
+2022-05-11 17:05:01,692 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 17:05:01,693 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 17:05:01,693 lr: 0.001514408212952647
+2022-05-11 17:14:56,299 student's train_mIoU 0.749
+2022-05-11 17:14:56,340 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 17:14:56,340 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 17:14:56,340 lr: 0.0015022929472490257
+2022-05-11 17:24:50,938 student's train_mIoU 0.746
+2022-05-11 17:24:50,973 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 17:24:50,973 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 17:24:50,973 lr: 0.0014902746036710335
+2022-05-11 17:34:45,308 student's train_mIoU 0.754
+2022-05-11 17:34:45,380 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 17:34:45,380 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 17:34:45,380 lr: 0.0014783524068416652
+2022-05-11 17:44:40,352 student's train_mIoU 0.751
+2022-05-11 17:44:40,411 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 17:44:40,411 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 17:44:40,411 lr: 0.0014665255875869318
+2022-05-11 17:54:34,836 student's train_mIoU 0.750
+2022-05-11 17:54:34,838 Thread 0 handle 500 data.
+2022-05-11 18:07:02,957 student's valid_mIoU 0.681
+2022-05-11 18:07:03,040 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:07:03,040 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:07:03,040 lr: 0.0014547933828862364
+2022-05-11 18:16:57,081 student's train_mIoU 0.754
+2022-05-11 18:16:57,143 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:16:57,143 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:16:57,143 lr: 0.0014431550358231465
+2022-05-11 18:26:51,510 student's train_mIoU 0.757
+2022-05-11 18:26:51,551 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:26:51,552 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:26:51,552 lr: 0.0014316097955365615
+2022-05-11 18:36:45,432 student's train_mIoU 0.749
+2022-05-11 18:36:45,473 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:36:45,473 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:36:45,473 lr: 0.001420156917172269
+2022-05-11 18:46:40,033 student's train_mIoU 0.750
+2022-05-11 18:46:40,067 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:46:40,067 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:46:40,067 lr: 0.001408795661834891
+2022-05-11 18:56:34,823 student's train_mIoU 0.752
+2022-05-11 18:56:34,877 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 18:56:34,877 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 18:56:34,877 lr: 0.0013975252965402118
+2022-05-11 19:06:30,287 student's train_mIoU 0.747
+2022-05-11 19:06:30,332 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 19:06:30,333 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 19:06:30,333 lr: 0.00138634509416789
+2022-05-11 19:16:24,340 student's train_mIoU 0.751
+2022-05-11 19:16:24,382 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 19:16:24,382 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 19:16:24,382 lr: 0.0013752543334145469
+2022-05-11 19:26:19,108 student's train_mIoU 0.756
+2022-05-11 19:26:19,163 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 19:26:19,163 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 19:26:19,163 lr: 0.0013642522987472306
+2022-05-11 19:36:13,602 student's train_mIoU 0.755
+2022-05-11 19:36:13,644 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 19:36:13,644 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 19:36:13,644 lr: 0.0013533382803572528
+2022-05-11 19:46:08,674 student's train_mIoU 0.757
+2022-05-11 19:46:08,675 Thread 0 handle 500 data.
+2022-05-11 19:58:38,841 student's valid_mIoU 0.692
+2022-05-11 19:58:38,919 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 19:58:38,919 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 19:58:38,919 lr: 0.0013425115741143947
+2022-05-11 20:08:33,237 student's train_mIoU 0.755
+2022-05-11 20:08:33,294 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:08:33,294 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:08:33,294 lr: 0.0013317714815214796
+2022-05-11 20:18:27,259 student's train_mIoU 0.752
+2022-05-11 20:18:27,321 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:18:27,321 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:18:27,321 lr: 0.0013211173096693077
+2022-05-11 20:28:21,327 student's train_mIoU 0.751
+2022-05-11 20:28:21,390 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:28:21,390 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:28:21,390 lr: 0.0013105483711919532
+2022-05-11 20:38:15,730 student's train_mIoU 0.758
+2022-05-11 20:38:15,792 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:38:15,792 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:38:15,792 lr: 0.0013000639842224175
+2022-05-11 20:48:10,097 student's train_mIoU 0.753
+2022-05-11 20:48:10,157 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:48:10,157 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:48:10,157 lr: 0.0012896634723486382
+2022-05-11 20:58:04,962 student's train_mIoU 0.748
+2022-05-11 20:58:05,003 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 20:58:05,003 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 20:58:05,003 lr: 0.001279346164569849
+2022-05-11 21:07:59,080 student's train_mIoU 0.758
+2022-05-11 21:07:59,122 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 21:07:59,122 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 21:07:59,122 lr: 0.0012691113952532902
+2022-05-11 21:17:53,463 student's train_mIoU 0.755
+2022-05-11 21:17:53,522 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 21:17:53,522 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 21:17:53,522 lr: 0.0012589585040912639
+2022-05-11 21:27:48,180 student's train_mIoU 0.753
+2022-05-11 21:27:48,222 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 21:27:48,222 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 21:27:48,222 lr: 0.0012488868360585337
+2022-05-11 21:37:41,149 student's train_mIoU 0.753
+2022-05-11 21:37:41,150 Thread 0 handle 500 data.
+2022-05-11 21:50:11,470 student's valid_mIoU 0.675
+2022-05-11 21:50:11,548 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 21:50:11,548 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 21:50:11,548 lr: 0.0012388957413700654
+2022-05-11 22:00:05,681 student's train_mIoU 0.753
+2022-05-11 22:00:05,743 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:00:05,743 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:00:05,743 lr: 0.0012289845754391048
+2022-05-11 22:10:00,041 student's train_mIoU 0.746
+2022-05-11 22:10:00,103 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:10:00,103 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:10:00,103 lr: 0.0012191526988355919
+2022-05-11 22:19:54,017 student's train_mIoU 0.760
+2022-05-11 22:19:54,079 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:19:54,079 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:19:54,079 lr: 0.0012093994772449071
+2022-05-11 22:29:48,514 student's train_mIoU 0.761
+2022-05-11 22:29:48,556 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:29:48,556 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:29:48,556 lr: 0.0011997242814269478
+2022-05-11 22:39:43,388 student's train_mIoU 0.761
+2022-05-11 22:39:43,430 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:39:43,430 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:39:43,430 lr: 0.0011901264871755322
+2022-05-11 22:49:37,495 student's train_mIoU 0.756
+2022-05-11 22:49:37,529 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:49:37,529 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:49:37,529 lr: 0.001180605475278128
+2022-05-11 22:59:31,816 student's train_mIoU 0.760
+2022-05-11 22:59:31,858 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 22:59:31,858 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 22:59:31,858 lr: 0.001171160631475903
+2022-05-11 23:09:26,043 student's train_mIoU 0.758
+2022-05-11 23:09:26,106 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 23:09:26,106 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 23:09:26,106 lr: 0.0011617913464240957
+2022-05-11 23:19:20,327 student's train_mIoU 0.763
+2022-05-11 23:19:20,368 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 23:19:20,368 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 23:19:20,368 lr: 0.001152497015652703
+2022-05-11 23:29:13,885 student's train_mIoU 0.762
+2022-05-11 23:29:13,886 Thread 0 handle 500 data.
+2022-05-11 23:41:43,618 student's valid_mIoU 0.677
+2022-05-11 23:41:43,735 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 23:41:43,735 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 23:41:43,735 lr: 0.0011432770395274814
+2022-05-11 23:51:37,949 student's train_mIoU 0.758
+2022-05-11 23:51:38,013 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-11 23:51:38,013 train-512x1024_teacher_batch12-20220509-212049
+2022-05-11 23:51:38,013 lr: 0.0011341308232112614
+2022-05-12 00:01:31,867 student's train_mIoU 0.756
+2022-05-12 00:01:31,908 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:01:31,908 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:01:31,909 lr: 0.0011250577766255714
+2022-05-12 00:11:25,833 student's train_mIoU 0.768
+2022-05-12 00:11:25,894 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:11:25,894 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:11:25,894 lr: 0.0011160573144125669
+2022-05-12 00:21:19,933 student's train_mIoU 0.770
+2022-05-12 00:21:19,975 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:21:19,975 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:21:19,975 lr: 0.0011071288558972664
+2022-05-12 00:31:13,705 student's train_mIoU 0.769
+2022-05-12 00:31:13,746 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:31:13,746 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:31:13,747 lr: 0.0010982718250500882
+2022-05-12 00:41:08,224 student's train_mIoU 0.761
+2022-05-12 00:41:08,266 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:41:08,266 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:41:08,266 lr: 0.0010894856504496874
+2022-05-12 00:51:02,569 student's train_mIoU 0.770
+2022-05-12 00:51:02,610 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 00:51:02,610 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 00:51:02,611 lr: 0.0010807697652460899
+2022-05-12 01:00:55,957 student's train_mIoU 0.763
+2022-05-12 01:00:56,016 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 01:00:56,016 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 01:00:56,016 lr: 0.001072123607124121
+2022-05-12 01:10:50,616 student's train_mIoU 0.763
+2022-05-12 01:10:50,658 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 01:10:50,658 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 01:10:50,658 lr: 0.001063546618267128
+2022-05-12 01:20:43,898 student's train_mIoU 0.762
+2022-05-12 01:20:43,899 Thread 0 handle 500 data.
+2022-05-12 01:33:13,275 student's valid_mIoU 0.692
+2022-05-12 01:33:13,391 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 01:33:13,392 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 01:33:13,392 lr: 0.001055038245320991
+2022-05-12 01:43:07,435 student's train_mIoU 0.768
+2022-05-12 01:43:07,476 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 01:43:07,476 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 01:43:07,477 lr: 0.001046597939358423
+2022-05-12 01:53:00,842 student's train_mIoU 0.771
+2022-05-12 01:53:00,883 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 01:53:00,883 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 01:53:00,883 lr: 0.0010382251558435558
+2022-05-12 02:02:55,965 student's train_mIoU 0.775
+2022-05-12 02:02:55,999 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:02:55,999 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:02:55,999 lr: 0.0010299193545968072
+2022-05-12 02:12:49,791 student's train_mIoU 0.766
+2022-05-12 02:12:49,832 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:12:49,832 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:12:49,832 lr: 0.0010216799997600327
+2022-05-12 02:22:43,287 student's train_mIoU 0.768
+2022-05-12 02:22:43,350 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:22:43,350 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:22:43,350 lr: 0.0010135065597619525
+2022-05-12 02:32:37,575 student's train_mIoU 0.765
+2022-05-12 02:32:37,617 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:32:37,617 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:32:37,617 lr: 0.0010053985072838569
+2022-05-12 02:42:31,139 student's train_mIoU 0.772
+2022-05-12 02:42:31,202 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:42:31,202 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:42:31,202 lr: 0.000997355319225586
+2022-05-12 02:52:24,877 student's train_mIoU 0.764
+2022-05-12 02:52:24,919 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 02:52:24,919 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 02:52:24,919 lr: 0.0009893764766717812
+2022-05-12 03:02:18,736 student's train_mIoU 0.767
+2022-05-12 03:02:18,798 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 03:02:18,798 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 03:02:18,798 lr: 0.0009814614648584069
+2022-05-12 03:12:11,523 student's train_mIoU 0.773
+2022-05-12 03:12:11,524 Thread 0 handle 500 data.
+2022-05-12 03:24:38,787 student's valid_mIoU 0.671
+2022-05-12 03:24:38,863 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 03:24:38,863 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 03:24:38,863 lr: 0.0009736097731395395
+2022-05-12 03:34:32,662 student's train_mIoU 0.765
+2022-05-12 03:34:32,721 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 03:34:32,721 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 03:34:32,721 lr: 0.0009658208949544232
+2022-05-12 03:44:23,312 student's train_mIoU 0.770
+2022-05-12 03:44:23,354 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 03:44:23,354 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 03:44:23,354 lr: 0.0009580943277947878
+2022-05-12 03:54:15,677 student's train_mIoU 0.774
+2022-05-12 03:54:15,739 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 03:54:15,739 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 03:54:15,739 lr: 0.0009504295731724295
+2022-05-12 04:04:07,868 student's train_mIoU 0.770
+2022-05-12 04:04:07,910 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:04:07,910 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:04:07,910 lr: 0.0009428261365870501
+2022-05-12 04:13:59,716 student's train_mIoU 0.768
+2022-05-12 04:13:59,758 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:13:59,758 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:13:59,758 lr: 0.0009352835274943536
+2022-05-12 04:23:51,591 student's train_mIoU 0.772
+2022-05-12 04:23:51,633 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:23:51,633 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:23:51,633 lr: 0.0009278012592743987
+2022-05-12 04:33:43,238 student's train_mIoU 0.771
+2022-05-12 04:33:43,292 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:33:43,292 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:33:43,292 lr: 0.0009203788492002036
+2022-05-12 04:43:35,117 student's train_mIoU 0.772
+2022-05-12 04:43:35,158 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:43:35,158 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:43:35,158 lr: 0.0009130158184066019
+2022-05-12 04:53:27,021 student's train_mIoU 0.770
+2022-05-12 04:53:27,061 /home/asg1g18/FasterSeg/train/fasterseg
+2022-05-12 04:53:27,062 train-512x1024_teacher_batch12-20220509-212049
+2022-05-12 04:53:27,062 lr: 0.0009057116918593491
+2022-05-12 05:03:18,241 student's train_mIoU 0.777
+2022-05-12 05:03:18,242 Thread 0 handle 500 data.
+2022-05-12 05:15:47,266 student's valid_mIoU 0.694

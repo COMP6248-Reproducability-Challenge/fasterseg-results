@@ -14,9 +14,16 @@ contains test results submitted to Cityscapes and csv files containing the retur
 
 `train/`:
 
-`train-512x1024_student_batch12-20220507-131130_DISTILLED_100epochs` - training of student model distilled (for 100 epochs) from teacher model (trained for 100 epochs).
+`100epoch_distilled_student_from_100epoch_teacher/` - distillation of student model (for 100 epochs) from teacher model (trained for 100 epochs).
 
-`train-512x1024_teacher_batch12-20220506-142555_TRAINED_100epochs` - training of teacher model for 100 epochs
+`100epoch_trainscratch_teacher/` - training of teacher model for 100 epochs
+
+`100epoch_trainscratch_student/` - training of student model for 100 epochs
+
+`300epoch_trainscratch_student/` - training of student model for 300 epochs
+
+`100epoch_distilled_student_from_pretrain_teacher/` - distillation of student model (for 100 epochs) from pre-trained teacher model
+
 
 ---
 
